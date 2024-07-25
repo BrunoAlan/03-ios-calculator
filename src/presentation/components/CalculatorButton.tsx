@@ -1,4 +1,4 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, useWindowDimensions } from 'react-native';
 import { styles, colors } from '../../config/theme/app-theme';
 
 interface Props {
@@ -16,6 +16,8 @@ export const CalculatorButton = ({
   blackText = false,
   onPress,
 }: Props) => {
+  const { width } = useWindowDimensions();
+
   return (
     <Pressable
       onPress={onPress}
@@ -23,7 +25,8 @@ export const CalculatorButton = ({
         ...styles.button,
         opacity: pressed ? 0.8 : 1,
         backgroundColor: color,
-        width: doubleSize ? 180 : 80,
+        height: width / 4 - 20,
+        width: doubleSize ? width / 2 - 20 : width / 4 - 20,
       })}
     >
       <Text
